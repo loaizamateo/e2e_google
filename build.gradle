@@ -1,0 +1,40 @@
+group 'proyectoprueba'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'net.serenity-bdd.aggregator'
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+compileJava.options.encoding = 'UTF-8'
+compileTestJava.options.encoding="UTF-8"
+repositories {
+    maven {
+        url "https://artifactory.apps.bancolombia.com/maven-bancolombia" }
+
+    mavenLocal()
+    jcenter()
+}
+buildscript {
+    repositories {
+        maven {
+            url "https://artifactory.apps.bancolombia.com/maven-bancolombia" }
+        mavenLocal()
+        jcenter()
+        dependencies {
+            classpath("net.serenity-bdd:serenity-gradle-plugin:2.0.33")
+        }
+    }
+}
+dependencies {
+    compile 'net.serenity-bdd:serenity-core:2.0.33'
+    compile 'net.serenity-bdd:serenity-junit:2.0.33'
+    compile 'net.serenity-bdd:serenity-screenplay:2.0.33'
+    compile 'net.serenity-bdd:serenity-screenplay-webdriver:2.0.33'
+    testCompile 'junit:junit:4.12'
+    testCompile 'net.serenity-bdd:serenity-cucumber:1.9.23'
+    testCompile 'org.assertj:assertj-core:3.11.1'
+    testCompile 'org.slf4j:slf4j-simple:1.7.25'
+}
+gradle.startParameter.continueOnFailure = true
